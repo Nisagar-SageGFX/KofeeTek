@@ -304,7 +304,7 @@ export default function Hero() {
               <div className="w-8 h-8 bg-[#E8650A]/20 rounded-lg flex items-center justify-center text-sm">☕</div>
               <div>
                 <div className="text-white text-[11px] font-semibold">KT FreshMilk Pro 8</div>
-                <div className="text-brand-gold text-[11px]">₹7,500 / month</div>
+                <div className="text-brand-gold text-[11px]">₹7,700 / month</div>
               </div>
             </motion.div>
 
