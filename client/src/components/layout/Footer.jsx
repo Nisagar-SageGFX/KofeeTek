@@ -123,7 +123,7 @@ export default function Footer() {
             </li>
             <li className="flex gap-3 text-sm">
               <MapPin size={15} className="text-brand-gold mt-0.5 shrink-0" />
-              <span className="text-white/50 leading-relaxed">
+              <span className="text-white/70 leading-relaxed hover:text-brand-gold transition-colors" >
                 Plot No 10, C-Block, G3,<br />
                 Kalpathru Garden, Urapakkam,<br />
                 Chennai – 603210

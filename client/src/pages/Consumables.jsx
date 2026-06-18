@@ -208,11 +208,11 @@ export default function Consumables() {
             transition={{ delay: 0.6 }}
             className="mt-14 rounded-2xl overflow-hidden shadow-2xl"
           >
-            <img
+            {/* <img
               src="/assets/machines/machine5.jpeg"
               alt="KofeeTek Full Consumables Range"
               className="w-full object-cover max-h-[400px]"
-            />
+            /> */}
           </motion.div>
         </div>
       </section>

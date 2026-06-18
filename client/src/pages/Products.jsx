@@ -76,7 +76,7 @@ const allMachines = [
     name: 'KT Premix 2 Selection',
     tagline: 'Compact Dual Beverage Machine',
     badge: 'Compact',
-    image: '/assets/machines/machine7.png',
+    image: '/assets/machines/KT Premix 2 Selection.jpg',
     capacity: '250 cups/day', power: '900W',
     features: ['Coffee + Tea selection', 'Hot water option', 'Counter-top compact design', 'LED display', 'Easy keypad controls'],
     rental: '₹2,200/month',

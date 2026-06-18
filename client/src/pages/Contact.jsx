@@ -68,7 +68,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-brand-brown/50 mb-0.5">{c.label}</div>
-                    <div className="text-brand-brownDark font-medium text-sm whitespace-pre-line">{c.value}</div>
+                    <div className="text-brand-brownDark font-medium text-sm whitespace-pre-line transition-colors duration-300 group-hover:text-brand-gold">
+                      {c.value}</div>
                   </div>
                 </a>
               ))}
