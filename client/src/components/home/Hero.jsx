@@ -80,8 +80,8 @@ function MachineModel() {
       {[
         [-0.28, 0.55], [0.28, 0.55],
         [-0.28, 0.22], [0.28, 0.22],
-        [-0.28,-0.12], [0.28,-0.12],
-        [-0.28,-0.46], [0.28,-0.46],
+        [-0.28, -0.12], [0.28, -0.12],
+        [-0.28, -0.46], [0.28, -0.46],
       ].map(([x, y], i) => (
         <group key={i}>
           <mesh position={[x, y, 0.558]}>
@@ -152,16 +152,16 @@ function Scene() {
     <>
       <Environment preset="studio" />
       <ambientLight intensity={0.4} />
-      <pointLight position={[4, 5, 4]}  intensity={1.8} color="#F5B800" />
+      <pointLight position={[4, 5, 4]} intensity={1.8} color="#F5B800" />
       <pointLight position={[-4, 2, -3]} intensity={0.7} color="#ffffff" />
-      <pointLight position={[0, -3, 4]}  intensity={0.5} color="#E8650A" />
+      <pointLight position={[0, -3, 4]} intensity={0.5} color="#E8650A" />
       <spotLight position={[0, 8, 5]} intensity={1.4} angle={0.4} penumbra={0.6} castShadow />
       <Float speed={0.95} rotationIntensity={0.07} floatIntensity={0.18}>
         <MachineModel />
       </Float>
       {[[-3.0, 0.5, -0.5], [3.3, -0.4, -0.8], [-2.6, -1.6, 0.3],
-        [2.9, 1.7, 0.2], [-2.9, 1.9, -0.3], [3.1, 0.1, 0.6],
-        [-2.1, -0.9, -0.9], [3.7, -1.1, 0.4]].map((p, i) => (
+      [2.9, 1.7, 0.2], [-2.9, 1.9, -0.3], [3.1, 0.1, 0.6],
+      [-2.1, -0.9, -0.9], [3.7, -1.1, 0.4]].map((p, i) => (
         <CoffeeBean key={i} position={p} speed={0.33 + i * 0.11} />
       ))}
       <OrbitControls
@@ -175,16 +175,16 @@ function Scene() {
 }
 
 /* ── Data ─────────────────────────────────────────────────────────────────── */
-const stats  = [
+const stats = [
   { value: '500+', label: 'Corporate Clients' },
-  { value: '7+',   label: 'Years Experience'  },
-  { value: '15K+', label: 'Cups Daily'        },
-  { value: 'ISO',  label: 'Registered'        },
+  { value: '7+', label: 'Years Experience' },
+  { value: '15K+', label: 'Cups Daily' },
+  { value: 'ISO', label: 'Registered' },
 ]
 const badges = ['IT Companies', 'Manufacturing', 'Hospitals', 'Corporates']
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } }
-const fadeUp    = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } } }
+const fadeUp = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } } }
 
 /* ── Hero ──────────────────────────────────────────────────────────────────── */
 export default function Hero() {
@@ -204,14 +204,14 @@ export default function Hero() {
           <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1">
 
             {/* Industry pills */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-5">
+            {/* <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-5">
               {badges.map(b => (
                 <span key={b} className="flex items-center gap-1.5 text-[11px] bg-brand-gold/12
                   text-brand-gold border border-brand-gold/22 px-3 py-1 rounded-full font-medium">
                   <CheckCircle2 size={10} className="fill-brand-gold" />{b}
                 </span>
               ))}
-            </motion.div>
+            </motion.div> */}
 
             {/* Eyebrow */}
             <motion.p variants={fadeUp}
@@ -252,7 +252,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Quick contact */}
-            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
+            {/* <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
               <a href="tel:+919962242499"
                 className="flex items-center gap-2 text-white/52 hover:text-brand-gold transition-colors text-[13px]">
                 <div className="w-7 h-7 rounded-full bg-brand-gold/10 flex items-center justify-center shrink-0">
@@ -265,17 +265,17 @@ export default function Hero() {
                 className="text-white/52 hover:text-brand-gold transition-colors text-[13px]">
                 sales@kofeetek.in
               </a>
-            </motion.div>
+            </motion.div> */}
 
             {/* Stats */}
-            <motion.div variants={fadeUp} className="grid grid-cols-4 gap-4">
+            {/* <motion.div variants={fadeUp} className="grid grid-cols-4 gap-4">
               {stats.map((s, i) => (
                 <div key={i} className="border-l-2 border-brand-gold/22 pl-3">
                   <div className="font-display text-[20px] font-bold text-white">{s.value}</div>
                   <div className="text-white/38 text-[10px] mt-0.5 leading-tight">{s.label}</div>
                 </div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           {/* ── RIGHT: 3D Canvas ── */}
@@ -294,7 +294,7 @@ export default function Hero() {
             </ThreeBoundary>
 
             {/* Floating badge */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: -18 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.3 }}
@@ -306,31 +306,33 @@ export default function Hero() {
                 <div className="text-white text-[11px] font-semibold">KT FreshMilk Pro 8</div>
                 <div className="text-brand-gold text-[11px]">₹7,700 / month</div>
               </div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Stars badge */}
             <motion.div
               initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.5 }}
-              className="absolute bottom-14 right-0 bg-white/8 backdrop-blur-md border border-white/14
-                         rounded-xl px-3.5 py-2.5 flex items-center gap-2 pointer-events-none"
+              // className="absolute bottom-14 right-0 bg-white/8 backdrop-blur-md border border-white/14
+              //            rounded-xl px-3.5 py-2.5 flex items-center gap-2 pointer-events-none"
             >
-              <div className="flex">{[...Array(5)].map((_, i) => (
+              {/* <div className="flex">{[...Array(5)].map((_, i) => (
                 <Star key={i} size={10} className="text-brand-gold fill-brand-gold" />
-              ))}</div>
-              <span className="text-white/72 text-[11px]">500+ Clients</span>
+              ))}</div> */}
+              {/* <span className="text-white/72 text-[11px]">500+ Clients</span> */}
             </motion.div>
 
             {/* Ground glow */}
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-48 h-10 pointer-events-none"
               style={{ background: 'radial-gradient(ellipse,rgba(245,184,0,.2) 0%,transparent 70%)', filter: 'blur(10px)' }} />
           </motion.div>
+
+          
         </div>
       </div>
 
       {/* Scroll cue */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.0 }}
@@ -343,7 +345,7 @@ export default function Hero() {
             className="w-1 h-1.5 bg-brand-gold rounded-full"
           />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }
