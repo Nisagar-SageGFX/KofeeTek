@@ -236,7 +236,7 @@ export default function Hero() {
 
             {/* Subheadline */}
             <motion.p variants={fadeUp}
-              className="text-white/58 text-[15px] leading-[1.78] mb-7 max-w-[430px]">
+              className="text-white/85 text-[15px] leading-[1.78] mb-7 max-w-[430px]">
               Premium Coffee & Tea Vending Machines — manufactured, rented and fully serviced
               across Tamil Nadu & Karnataka. ISO Certified. FSSAI Approved.
             </motion.p>
