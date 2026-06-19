@@ -20,7 +20,8 @@ const categories = [
     label: 'IT & Software',
     clients: ['Pegatron', 'Kanini', 'Innoppl', 'Microsense', 'SmartPoint', 'TechSoC', 'Getronics', 'NetAccess', '4D Global', 'V Dart'],
     color: 'bg-blue-50 border-blue-200',
-    badge: 'bg-blue-100 text-blue-700'
+    badge: 'bg-blue-100 text-blue-700' 
+    
   },
   {
     label: 'Manufacturing & Industry',
@@ -44,7 +45,8 @@ const categories = [
     label: 'Hospitality & Retail',
     clients: ['Spree Hotels', 'Muffin Group', 'PAIX', 'Phoenix Business', 'Triumph'],
     color: 'bg-yellow-50 border-yellow-200',
-    badge: 'bg-yellow-100 text-yellow-700'
+    badge: 'bg-yellow-100 text-yellow-700' ,
+    image: 'assets'
   },
 ]
 

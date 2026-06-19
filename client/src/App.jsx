@@ -26,6 +26,7 @@ const AdminInventory = lazy(() => import('./pages/admin/AdminInventory'))
 const AdminRentals   = lazy(() => import('./pages/admin/AdminRentals'))
 const AdminCustomers = lazy(() => import('./pages/admin/AdminCustomers'))
 const AdminAnalytics = lazy(() => import('./pages/admin/AdminAnalytics'))
+const ResetPassword   = lazy(() => import('./pages/admin/ResetPassword'))
 
 function PageLoader() {
   return (

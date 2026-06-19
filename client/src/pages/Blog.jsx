@@ -14,7 +14,7 @@ export const blogPosts = [
     date: '2026-06-01',
     readTime: '5 min read',
     tags: ['Coffee Machine', 'Corporate Office', 'Chennai', 'Workplace Productivity'],
-    image: '/assets/machines/machine5.jpeg',
+    image: '/assets/machines/KT FreshMilk Pro 8.jpeg',
     content: `Coffee is no longer a luxury in the modern workplace — it's a necessity. Studies show that employees who have easy access to quality beverages are 20% more productive and report higher job satisfaction.
 
 For corporate offices in Chennai's bustling IT corridors like OMR, Sholinganallur, and Tidel Park, a professional vending machine from KofeeTek is the smart choice.
@@ -44,7 +44,7 @@ Contact us today: +91 99622 42499 | sales@kofeetek.in`
     date: '2026-05-22',
     readTime: '7 min read',
     tags: ['Tea Vending Machine', 'Coimbatore', 'Manufacturers', 'Rental'],
-    image: '/assets/machines/machine2.jpeg',
+    image: '/assets/machines/KT Capacitive Touch Brew.jpeg',
     content: `Coimbatore — the Manchester of South India — is home to thousands of textile mills, engineering firms, and IT companies that keep their workforce fuelled with quality chai.
 
 If you're searching for tea vending machine manufacturers in Coimbatore, this guide is for you.
@@ -143,7 +143,7 @@ Contact KofeeTek: +91 99622 42499`
     date: '2026-04-30',
     readTime: '5 min read',
     tags: ['Maintenance', 'Tips', 'Vending Machine', 'Office'],
-    image: '/assets/machines/machine3.jpeg',
+    image: '/assets/machines/KT Coffee Brewer.jpeg',
     content: `After servicing 1,000+ machines across South India, KofeeTek's engineers have compiled the most important maintenance practices every office should follow.
 
 ## Daily Maintenance (5 minutes)

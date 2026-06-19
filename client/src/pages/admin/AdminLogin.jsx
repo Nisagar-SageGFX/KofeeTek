@@ -5,24 +5,52 @@ import { Coffee, Eye, EyeOff } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 export default function AdminLogin() {
-  const [email, setEmail]       = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [showPw, setShowPw]     = useState(false)
-  const [loading, setLoading]   = useState(false)
+  const [showPw, setShowPw] = useState(false)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async e => {
+    //   
     e.preventDefault()
     setLoading(true)
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    console.log("DATA:", data)
+    console.log("ERROR:", error)
+
     if (error) {
+      console.log(error)
       toast.error(error.message)
     } else {
-      toast.success('Welcome back!')
-      navigate('/admin')
+      toast.success("Welcome back!")
+      navigate("/admin")
     }
+
     setLoading(false)
   }
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast.error("Please enter your email address first.");
+      return;
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "http://localhost:3000/reset-password",
+    });
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Password reset link sent to your email.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-brand-dark to-brand-brownDark flex items-center justify-center p-4">
@@ -41,29 +69,50 @@ export default function AdminLogin() {
               <label className="block text-sm font-medium text-brand-brown mb-1.5">Email</label>
               <input
                 type="email" value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="admin@kofeetek.in"
+                placeholder="nisagar.sagegfx@gmail.com"
                 className="input-field" required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-brand-brown mb-1.5">Password</label>
-              <div className="relative">
-                <input
-                  type={showPw ? 'text' : 'password'}
-                  value={password} onChange={e => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="input-field pr-12" required
-                />
-                <button type="button" onClick={() => setShowPw(!showPw)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-brown/50 hover:text-brand-brown">
-                  {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
+              <div>
+                <label className="block text-sm font-medium text-brand-brown mb-1.5">
+                  Password
+                </label>
+
+                <div className="relative">
+                  <input
+                    type={showPw ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="input-field pr-12"
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPw(!showPw)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-brown/50 hover:text-brand-brown"
+                  >
+                    {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+
+                <div className="flex justify-end mt-2">
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    className="text-sm text-brand-gold hover:underline"
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
               </div>
-            </div>
-            <button type="submit" disabled={loading}
-              className="btn-primary w-full justify-center disabled:opacity-70 disabled:cursor-not-allowed">
-              {loading ? 'Signing in...' : 'Sign In'}
-            </button>
+              </div>
+              <button type="submit" disabled={loading}
+                className="btn-primary w-full justify-center disabled:opacity-70 disabled:cursor-not-allowed">
+                {loading ? 'Signing in...' : 'Sign In'}
+              </button>
           </form>
           <p className="text-center text-xs text-brand-brown/40 mt-5">
             KofeeTek Admin Portal — Authorised access only
