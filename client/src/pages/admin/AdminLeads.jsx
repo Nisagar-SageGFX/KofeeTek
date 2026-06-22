@@ -65,17 +65,17 @@ export default function AdminLeads() {
   return (
     <div>
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-7">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-7">
         <div>
           <h2 className="font-display text-2xl font-bold text-brand-brownDark">Lead Management</h2>
           <p className="text-brand-brown/55 text-sm mt-0.5">{leads.length} total leads</p>
         </div>
         {/* Search */}
-        <div className="relative">
+        <div className="relative w-full sm:w-64">
           <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-brown/40" />
           <input value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search name, company, city..."
-            className="input-field pl-9 text-sm w-64" />
+            className="input-field pl-9 text-sm w-full" />
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export default function AdminLeads() {
         <div className="space-y-3">
           {filtered.map(lead => (
             <div key={lead.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                 {/* Name + Company */}
                 <div>
                   <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Name</div>

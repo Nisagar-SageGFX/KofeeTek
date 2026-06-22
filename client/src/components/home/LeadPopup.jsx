@@ -120,7 +120,7 @@ export default function LeadPopup() {
                       <input {...register('email', { required: true })}
                         placeholder="Work Email *" type="email"
                         className={`input-field ${errors.email ? 'border-red-400' : ''}`} />
-                    </div>
+                    </div>                
                     <div>
                       <input {...register('location', { required: true })}
                         placeholder="City / Location *"

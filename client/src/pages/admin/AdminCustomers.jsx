@@ -69,7 +69,7 @@ export default function AdminCustomers() {
               <button onClick={() => setForm(null)}><X size={20} className="text-brand-brown/50" /></button>
             </div>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-brand-brown mb-1.5">Company Name *</label>
                   <input value={form.company_name || ''} onChange={e => setForm(p => ({ ...p, company_name: e.target.value }))} className="input-field" placeholder="Company name" />
@@ -130,6 +130,7 @@ export default function AdminCustomers() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50 text-left">
@@ -161,6 +162,7 @@ export default function AdminCustomers() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

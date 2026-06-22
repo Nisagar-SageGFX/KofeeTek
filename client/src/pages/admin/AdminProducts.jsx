@@ -64,7 +64,7 @@ export default function AdminProducts() {
               <button onClick={() => setForm(null)}><X size={20} className="text-brand-brown/50 hover:text-brand-brown" /></button>
             </div>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-brand-brown mb-1.5">Product Name *</label>
                   <input value={form.name || ''} onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
@@ -83,7 +83,7 @@ export default function AdminProducts() {
                 <textarea value={form.description || ''} onChange={e => setForm(p => ({ ...p, description: e.target.value }))}
                   rows={3} className="input-field resize-none" placeholder="Product description..." />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-brand-brown mb-1.5">Image URL</label>
                   <input value={form.image || ''} onChange={e => setForm(p => ({ ...p, image: e.target.value }))}
@@ -117,6 +117,7 @@ export default function AdminProducts() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50 text-left">
@@ -157,6 +158,7 @@ export default function AdminProducts() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

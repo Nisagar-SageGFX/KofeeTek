@@ -35,7 +35,7 @@ export default function AdminInventory() {
       </div>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
           <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-3">
             <Package size={20} className="text-blue-600" />
@@ -77,6 +77,7 @@ export default function AdminInventory() {
         <div className="flex justify-center py-20"><div className="w-7 h-7 border-2 border-brand-gold border-t-transparent rounded-full animate-spin" /></div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50 text-left">
@@ -128,6 +129,7 @@ export default function AdminInventory() {
               })}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

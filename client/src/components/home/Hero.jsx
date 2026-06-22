@@ -17,7 +17,7 @@ class ThreeBoundary extends Component {
 function PhotoHero() {
   return (
     <div className="h-full flex items-center justify-center">
-      <div className="relative w-full max-w-sm mx-auto">
+      {/* <div className="relative w-full max-w-sm mx-auto">
         <motion.img
           initial={{ opacity: 0, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -30,7 +30,7 @@ function PhotoHero() {
         />
         <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-56 h-12 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse,rgba(245,184,0,.28) 0%,transparent 70%)', filter: 'blur(14px)' }} />
-      </div>
+      </div> */}
     </div>
   )
 }

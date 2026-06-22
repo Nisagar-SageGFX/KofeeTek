@@ -52,7 +52,7 @@ export default function AdminRentals() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
         {[
           { label:'Active Rentals', value: active, color:'text-green-600', bg:'bg-green-50 border-green-200' },
           { label:'Monthly Revenue', value:`₹${revenue.toLocaleString('en-IN')}`, color:'text-brand-gold', bg:'bg-brand-cream border-brand-beige' },
@@ -84,7 +84,7 @@ export default function AdminRentals() {
               <button onClick={() => setForm(null)}><X size={20} className="text-brand-brown/50" /></button>
             </div>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-brand-brown mb-1.5">Company Name *</label>
                   <input value={form.company_name || ''} onChange={e => setForm(p => ({ ...p, company_name: e.target.value }))} className="input-field" placeholder="Company name" />
