@@ -79,7 +79,7 @@ export default function BlogPost() {
         </div>
         <div className="max-w-4xl mx-auto px-4">
           <img src={post.image} alt={post.title}
-            className="w-full rounded-t-2xl object-cover max-h-[380px]"
+            className="w-full rounded-t-2xl object-contain max-h-[380px] pb-10"
             onError={e=>{e.target.style.display='none'}} />
         </div>
       </section>

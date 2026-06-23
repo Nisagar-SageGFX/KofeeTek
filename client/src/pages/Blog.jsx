@@ -370,7 +370,7 @@ export default function Blog() {
               <Link to={`/blog/${featured.slug}`}
                 className="grid md:grid-cols-2 gap-0 bg-white rounded-2xl shadow-md overflow-hidden
                            hover:shadow-xl transition-shadow duration-300 group">
-                <div className="aspect-[16/9] md:aspect-auto overflow-hidden">
+                <div className="aspect-[16/9] md:aspect-auto ">
                   <img src={featured.image} alt={featured.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
@@ -416,7 +416,7 @@ export default function Blog() {
                 >
                   <Link to={`/blog/${post.slug}`}
                     className="card-premium flex flex-col h-full group block">
-                    <div className="aspect-[16/9] overflow-hidden bg-brand-beige">
+                    <div className="aspect-[16/9]  bg-brand-beige">
                       <img src={post.image} alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         onError={e => { e.target.style.display = 'none' }} />
