@@ -55,7 +55,7 @@ export default function Footer() {
             FSSAI certified. Trusted by 500+ corporates since 2017.
           </p>
           <div className="flex gap-2.5">
-            {['f','in','𝕏','Y'].map((s, i) => (
+            {['f','in','𝕏','▶'].map((s, i) => (
               <a key={i} href="#"
                 className="w-9 h-9 bg-white/6 hover:bg-brand-gold rounded-lg flex items-center
                            justify-center transition-colors duration-200 hover:text-brand-brownDark text-sm">
