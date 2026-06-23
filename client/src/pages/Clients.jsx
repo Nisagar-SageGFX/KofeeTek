@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Star, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
+import { Star, ArrowRight, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Quote, Pause, Play } from 'lucide-react'
 
 /* ─────────────────────────────────────────────
    CLIENT DATA
@@ -80,6 +80,32 @@ const cardVariants = {
   exit:   { opacity: 0, y: 16, scale: 0.94, transition: { duration: 0.25, ease: 'easeIn'  } },
 }
 
+const AUTOPLAY_MS = 5000
+const SWIPE_THRESHOLD = 50
+
+/** Returns 1 (mobile) / 2 (tablet) / 3 (desktop) based on viewport width */
+function useCardsPerView() {
+  const getPerView = (w) => (w < 640 ? 1 : w < 1024 ? 2 : 3)
+  const [perView, setPerView] = useState(
+    typeof window === 'undefined' ? 3 : getPerView(window.innerWidth)
+  )
+
+  useEffect(() => {
+    let frame
+    const onResize = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => setPerView(getPerView(window.innerWidth)))
+    }
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      cancelAnimationFrame(frame)
+    }
+  }, [])
+
+  return perView
+}
+
 /* ── Single client card ── */
 function ClientCard({ client, index }) {
   const [imgError, setImgError] = useState(false)
@@ -154,6 +180,65 @@ export default function Clients() {
     } else {
       setShowAll(true)
     }
+  }
+
+  /* ── Testimonials carousel state ── */
+  const perView   = useCardsPerView()
+  const pageCount = Math.ceil(testimonials.length / perView)
+
+  const [page, setPage]           = useState(0)
+  const [direction, setDirection] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isHovering, setIsHovering] = useState(false)
+
+  const carouselRef   = useRef(null)
+  const autoplayRef   = useRef(null)
+  const liveRegionRef = useRef(null)
+
+  useEffect(() => {
+    setPage(p => Math.min(p, pageCount - 1))
+  }, [pageCount])
+
+  const goTo = useCallback((next) => {
+    setDirection(next > page ? 1 : -1)
+    setPage(((next % pageCount) + pageCount) % pageCount)
+  }, [page, pageCount])
+
+  const nextSlide = useCallback(() => goTo(page + 1), [goTo, page])
+  const prevSlide = useCallback(() => goTo(page - 1), [goTo, page])
+
+  useEffect(() => {
+    if (!isPlaying || isHovering || pageCount <= 1) return
+    autoplayRef.current = setInterval(() => {
+      setDirection(1)
+      setPage(p => (p + 1) % pageCount)
+    }, AUTOPLAY_MS)
+    return () => clearInterval(autoplayRef.current)
+  }, [isPlaying, isHovering, pageCount])
+
+  useEffect(() => {
+    if (liveRegionRef.current) {
+      liveRegionRef.current.textContent = `Showing testimonials ${page + 1} of ${pageCount}`
+    }
+  }, [page, pageCount])
+
+  const onCarouselKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide() }
+    if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide() }
+  }
+
+  const testimonialSlides = useMemo(() => {
+    const out = []
+    for (let i = 0; i < pageCount; i++) {
+      out.push(testimonials.slice(i * perView, i * perView + perView))
+    }
+    return out
+  }, [perView, pageCount])
+
+  const slideVariants = {
+    enter:  (dir) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit:   (dir) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
   }
 
   return (
@@ -280,44 +365,172 @@ export default function Clients() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
+      {/* ── Testimonials Carousel ── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="section-label">What They Say</span>
             <h2 className="section-heading">Client Testimonials</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity:0, y:24 }}
-                whileInView={{ opacity:1, y:0 }}
-                viewport={{ once:true, amount:0.1 }}
-                transition={{ delay: i * 0.09 }}
-                className="card-premium p-6 group hover:border-brand-gold/30"
-              >
-                <div className="flex mb-3">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} size={13} className="text-brand-gold fill-brand-gold" />
+
+          <div
+            ref={carouselRef}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Client testimonials"
+            tabIndex={0}
+            onKeyDown={onCarouselKeyDown}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            onFocus={() => setIsHovering(true)}
+            onBlur={() => setIsHovering(false)}
+            className="relative outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 rounded-2xl"
+          >
+            {/* Live region for screen readers */}
+            <p ref={liveRegionRef} className="sr-only" role="status" aria-live="polite" />
+
+            {/* Side arrows — desktop/tablet only */}
+            {pageCount > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  aria-label="Previous testimonials"
+                  className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6
+                             z-10 w-10 h-10 rounded-full bg-white border border-brand-beige shadow-md
+                             items-center justify-center text-brand-brown hover:bg-brand-gold
+                             hover:text-brand-brownDark hover:border-brand-gold transition-colors duration-200"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  aria-label="Next testimonials"
+                  className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6
+                             z-10 w-10 h-10 rounded-full bg-white border border-brand-beige shadow-md
+                             items-center justify-center text-brand-brown hover:bg-brand-gold
+                             hover:text-brand-brownDark hover:border-brand-gold transition-colors duration-200"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </>
+            )}
+
+            {/* Slide viewport */}
+            <div className="overflow-hidden">
+              <AnimatePresence initial={false} custom={direction} mode="wait">
+                <motion.div
+                  key={page}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  drag={pageCount > 1 ? 'x' : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.15}
+                  onDragEnd={(e, info) => {
+                    if (info.offset.x < -SWIPE_THRESHOLD) nextSlide()
+                    else if (info.offset.x > SWIPE_THRESHOLD) prevSlide()
+                  }}
+                  className={`grid gap-5 ${
+                    perView === 1 ? 'grid-cols-1' : perView === 2 ? 'grid-cols-2' : 'grid-cols-3'
+                  }`}
+                >
+                  {testimonialSlides[page]?.map((t, i) => (
+                    <motion.div
+                      key={`${page}-${i}`}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.08, duration: 0.35 }}
+                    >
+                      <div className="card-premium p-6 sm:p-7 relative h-full flex flex-col
+                                      hover:border-brand-gold/30 transition-colors duration-300">
+                        <Quote size={28} className="text-brand-gold/15 absolute top-5 right-5" aria-hidden="true" />
+                        <div className="flex mb-3" role="img" aria-label={`${t.rating} out of 5 stars`}>
+                          {[...Array(t.rating)].map((_, j) => (
+                            <Star key={j} size={13} className="text-brand-gold fill-brand-gold" aria-hidden="true" />
+                          ))}
+                        </div>
+                        <p className="text-brand-brown/70 text-sm leading-relaxed mb-5 italic grow">
+                          "{t.text}"
+                        </p>
+                        <div className="flex items-center gap-3 mt-auto">
+                          <div className={`w-10 h-10 ${t.bg} rounded-full flex items-center
+                                          justify-center text-white font-bold text-sm shrink-0`}
+                               aria-hidden="true">
+                            {t.initial}
+                          </div>
+                          <div>
+                            <div className="font-semibold text-brand-brownDark text-sm">{t.name}</div>
+                            <div className="text-brand-brown/50 text-xs">{t.role}</div>
+                            <div className="text-brand-brown/35 text-xs">{t.company}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Pagination dots + play/pause */}
+            {pageCount > 1 && (
+              <div className="flex items-center justify-center gap-3 mt-9">
+                <div className="flex items-center gap-2" role="tablist" aria-label="Select testimonial page">
+                  {Array.from({ length: pageCount }).map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      role="tab"
+                      aria-selected={i === page}
+                      aria-label={`Go to testimonials page ${i + 1}`}
+                      onClick={() => goTo(i)}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        i === page ? 'w-7 bg-brand-gold' : 'w-2.5 bg-brand-beige hover:bg-brand-gold/50'
+                      }`}
+                    />
                   ))}
                 </div>
-                <p className="text-brand-brown/70 text-sm leading-relaxed mb-5 italic">
-                  "{t.text}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 ${t.bg} rounded-full flex items-center
-                                  justify-center text-white font-bold text-sm shrink-0`}>
-                    {t.initial}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-brand-brownDark text-sm">{t.name}</div>
-                    <div className="text-brand-brown/50 text-xs">{t.role}</div>
-                    <div className="text-brand-brown/35 text-xs">{t.company}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                <button
+                  type="button"
+                  onClick={() => setIsPlaying(p => !p)}
+                  aria-label={isPlaying ? 'Pause autoplay' : 'Resume autoplay'}
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-brand-brown/50
+                             hover:text-brand-gold hover:bg-brand-cream transition-colors duration-200 ml-1"
+                >
+                  {isPlaying ? <Pause size={13} /> : <Play size={13} />}
+                </button>
+              </div>
+            )}
+
+            {/* Mobile-only nav row */}
+            {pageCount > 1 && (
+              <div className="flex sm:hidden items-center justify-center gap-4 mt-5">
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  aria-label="Previous testimonials"
+                  className="w-9 h-9 rounded-full bg-white border border-brand-beige shadow-sm
+                             flex items-center justify-center text-brand-brown active:bg-brand-gold
+                             active:text-brand-brownDark transition-colors"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  aria-label="Next testimonials"
+                  className="w-9 h-9 rounded-full bg-white border border-brand-beige shadow-sm
+                             flex items-center justify-center text-brand-brown active:bg-brand-gold
+                             active:text-brand-brownDark transition-colors"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -58,11 +58,11 @@ export default function Navbar() {
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-200 ${isActive
+                `px-3 py-2 rounded-lg text-[14px] font-medium transition-all duration-200 ${isActive
                   ? 'text-brand-gold bg-brand-gold/10'
                   : scrolled
                     ? 'text-brand-brown hover:text-brand-gold hover:bg-brand-gold/8'
-                    : 'text-white/85 hover:text-brand-gold hover:bg-white/10'
+                    : 'text-white/95 hover:text-brand-gold hover:bg-white/10'
                 }`
               }
             >
