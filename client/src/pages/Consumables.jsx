@@ -13,7 +13,7 @@ const consumables = [
     light: '#FFF0E6',
     desc: 'Premium Arabica & Robusta blend roasted to South Indian perfection. Rich aroma, strong body.',
     details: ['Arabica + Robusta blend', 'Karnataka plantation sourced', 'Rich liquor & aroma', 'Optimised for vending machines'],
-    packs: ['500g', '1 kg', '5 kg', '25 kg Bulk']
+    packs: ['200g']
   },
   {
     name: 'Fine Assam Tea Powder',
@@ -23,7 +23,7 @@ const consumables = [
     light: '#F0FFF2',
     desc: 'Selected Assam CTC leaves for excellent milk tea performance. Strong liquor, vibrant color.',
     details: ['Assam CTC grade', 'Strong & refreshing', 'Excellent milk tea taste', 'Vending machine optimised'],
-    packs: ['500g', '1 kg', '5 kg', '25 kg Bulk']
+    packs: ['200g']
   },
   {
     name: 'Badam Mix Powder',
@@ -33,7 +33,7 @@ const consumables = [
     light: '#FFF8F0',
     desc: 'Real almonds, saffron, cardamom — a premium health drink loved by every workplace.',
     details: ['Real almond content', 'Saffron & cardamom', 'Nutritious & filling', 'Popular health option'],
-    packs: ['500g', '1 kg', '5 kg']
+    packs: ['200g']
   },
   {
     name: 'Masala Tea Powder',
@@ -43,7 +43,7 @@ const consumables = [
     light: '#FFF5ED',
     desc: 'Ginger, cardamom, cinnamon and clove — our masala chai is a workforce favourite.',
     details: ['7 spice blend', 'Strong ginger notes', 'Cardamom finish', 'Authentic chai taste'],
-    packs: ['500g', '1 kg', '5 kg']
+    packs: ['200g']
   },
   {
     name: 'Chocolate Mix Powder',
@@ -53,7 +53,7 @@ const consumables = [
     light: '#FFF2EC',
     desc: 'Rich cocoa powder blend — perfect for cold mornings and employee delight.',
     details: ['Rich cocoa content', 'Creamy texture', 'Easy to dispense', 'Kids & adult favourite'],
-    packs: ['500g', '1 kg', '5 kg']
+    packs: ['200g']
   },
   {
     name: 'Natural Jaggery Powder',
@@ -63,7 +63,7 @@ const consumables = [
     light: '#FFF8F0',
     desc: 'Pure sugarcane jaggery — the healthier alternative to refined sugar for office beverages.',
     details: ['100% natural', 'No chemical processing', 'Distinct caramel taste', 'Diabetic-friendly option'],
-    packs: ['1 kg', '5 kg', '25 kg Bulk']
+    packs: ['200g']
   },
   {
     name: 'Herbal Lemon Tea Mix',
@@ -73,7 +73,7 @@ const consumables = [
     light: '#FFFFF0',
     desc: 'Refreshing herbal lemon tea — excellent for afternoon energy without caffeine.',
     details: ['Natural lemon extract', 'Herbal ingredients', 'Zero caffeine option', 'Instant preparation'],
-    packs: ['500g', '1 kg', '5 kg']
+    packs: ['200g']
   },
   {
     name: 'Protein Ragi Malt',
@@ -83,17 +83,17 @@ const consumables = [
     light: '#F5FFF0',
     desc: 'Nutrient-dense ragi malt with natural sweeteners — a healthy choice for health-conscious workplaces.',
     details: ['High ragi content', 'Protein enriched', 'Natural sweeteners', 'Factory & hospital favourite'],
-    packs: ['500g', '1 kg', '5 kg']
+    packs: ['200g']
   },
   {
     name: 'Paper Cups',
     subtitle: 'FSC Certified',
-    image: '/assets/consumables/coffee.webp',
+    image: '/assets/consumables/Cups1.PNG',
     color: '#9B7653',
     light: '#FFF8F0',
     desc: 'Food-grade, biodegradable paper cups available in 100ml and 180ml sizes.',
     details: ['100ml & 180ml sizes', 'Food-grade material', 'Biodegradable', 'Bulk supply available'],
-    packs: ['Box of 1000', 'Box of 2000', 'Carton of 5000']
+    packs: ['Box of 1000']
   },
 ]
 
@@ -161,7 +161,7 @@ export default function Consumables() {
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4"
                     onError={e => { e.target.style.display = 'none' }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent " />
                 </div>
 
                 <div className="p-6">

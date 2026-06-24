@@ -21,11 +21,6 @@ const BlogPost    = lazy(() => import('./pages/BlogPost'))
 const AdminLogin     = lazy(() => import('./pages/admin/AdminLogin'))
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'))
 const AdminLeads     = lazy(() => import('./pages/admin/AdminLeads'))
-const AdminProducts  = lazy(() => import('./pages/admin/AdminProducts'))
-const AdminInventory = lazy(() => import('./pages/admin/AdminInventory'))
-const AdminRentals   = lazy(() => import('./pages/admin/AdminRentals'))
-const AdminCustomers = lazy(() => import('./pages/admin/AdminCustomers'))
-const AdminAnalytics = lazy(() => import('./pages/admin/AdminAnalytics'))
 const ResetPassword   = lazy(() => import('./pages/admin/ResetPassword'))
 
 function PageLoader() {
@@ -64,14 +59,10 @@ export default function App() {
             <Route path="blog/:slug"  element={<><BlogPost /><WhatsAppButton /></>} />
           </Route>
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/reset-password" element={<ResetPassword />} />
           <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
             <Route index              element={<AdminDashboard />} />
             <Route path="leads"       element={<AdminLeads />} />
-            <Route path="products"    element={<AdminProducts />} />
-            <Route path="inventory"   element={<AdminInventory />} />
-            <Route path="rentals"     element={<AdminRentals />} />
-            <Route path="customers"   element={<AdminCustomers />} />
-            <Route path="analytics"   element={<AdminAnalytics />} />
           </Route>
         </Routes>
       </Suspense>

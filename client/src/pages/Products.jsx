@@ -218,10 +218,10 @@ export default function Products() {
                   </button>
 
                   <div className="flex items-center justify-between pt-3 border-t border-brand-beige">
-                    <div>
+                    {/* <div>
                       <div className="text-[10px] text-brand-brown/50 uppercase tracking-wider">Rental from</div>
                       <div className="font-display font-bold text-xl text-brand-gold leading-tight">{m.rental}</div>
-                    </div>
+                    </div> */}
                     <Link to="/contact" className="flex items-center gap-1.5 bg-brand-brown text-white text-xs font-semibold
                                                     px-4 py-2.5 rounded-xl hover:bg-brand-brownLight transition-colors">
                       Get Quote <ArrowRight size={13} />

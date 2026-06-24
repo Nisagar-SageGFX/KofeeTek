@@ -21,7 +21,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', onScroll)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -30,10 +31,11 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled
-          ? 'bg-white/96 backdrop-blur-xl shadow-lg shadow-brand-brown/8 py-2'
-          : 'bg-transparent py-4'
-        }`}
+     className={`fixed top-0 left-0 right-0 z-50 bg-[#120803] transition-all duration-400 ${
+  scrolled
+    ? 'shadow-lg shadow-black/20 py-2'
+    : 'py-4'
+}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
@@ -44,9 +46,7 @@ export default function Navbar() {
             alt="KofeeTek – Feel The Brews"
             className={`object-contain transition-all duration-300 ${scrolled ? 'h-10' : 'h-14'
               }`}
-            style={{
-              filter: 'none',
-            }}
+            
           />
         </Link>
 
@@ -59,10 +59,8 @@ export default function Navbar() {
               end={link.to === '/'}
               className={({ isActive }) =>
                 `px-3 py-2 rounded-lg text-[14px] font-medium transition-all duration-200 ${isActive
-                  ? 'text-brand-gold bg-brand-gold/10'
-                  : scrolled
-                    ? 'text-brand-brown hover:text-brand-gold hover:bg-brand-gold/8'
-                    : 'text-white/95 hover:text-brand-gold hover:bg-white/10'
+                  ? 'text-brand-gold bg-white/10'
+                  : 'text-white/90 hover:text-brand-gold hover:bg-white/10'
                 }`
               }
             >
@@ -74,8 +72,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-3">
           <a href="tel:+919962242499"
-            className={`flex items-center gap-1.5 text-[13px] font-medium transition-colors ${scrolled ? 'text-brand-brown hover:text-brand-gold' : 'text-white/75 hover:text-brand-gold'
-              }`}
+            className="flex items-center gap-1.5 text-[13px] font-medium text-white/75 hover:text-brand-gold transition-colors duration-200"
           >
             <Phone size={13} />+91 99622 42499
           </a>
@@ -87,8 +84,7 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-brand-brown hover:bg-brand-beige' : 'text-white hover:bg-white/10'
-            }`}
+          className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-200"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -102,7 +98,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden bg-white border-t border-brand-beige shadow-xl overflow-hidden"
+            className="lg:hidden bg-brand-brownDark border-t border-white/10 shadow-xl overflow-hidden"
           >
             <div className="px-4 py-3 space-y-0.5">
               {navLinks.map(link => (
@@ -112,7 +108,7 @@ export default function Navbar() {
                   end={link.to === '/'}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
-                    `block px-4 py-2.5 rounded-xl text-[13px] font-medium transition-colors ${isActive ? 'bg-brand-gold/10 text-brand-gold' : 'text-brand-brown hover:bg-brand-beige'
+                    `block px-4 py-2.5 rounded-xl text-[13px] font-medium transition-colors duration-200 ${isActive ? 'bg-white/10 text-brand-gold' : 'text-white/85 hover:bg-white/10 hover:text-brand-gold'
                     }`
                   }
                 >

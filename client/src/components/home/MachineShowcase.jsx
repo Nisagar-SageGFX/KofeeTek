@@ -82,10 +82,7 @@ export default function MachineShowcase() {
                   ))}
                 </ul>
                 <div className="flex items-center justify-between pt-3 border-t border-brand-beige">
-                  <div>
-                    <div className="text-[9px] text-brand-brown/40 uppercase tracking-wider">Rental from</div>
-                    <div className="font-display font-bold text-[18px] text-brand-gold leading-tight">{m.rental}</div>
-                  </div>
+                  
                   <Link to="/contact"
                     className="flex items-center gap-1.5 bg-brand-brown text-white text-[11px] font-semibold
                                px-4 py-2 rounded-xl hover:bg-brand-brownLight transition-colors">

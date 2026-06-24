@@ -57,10 +57,10 @@ export default function Contact() {
             <div className="card-premium p-6">
               <h2 className="font-semibold text-brand-brownDark mb-5">Contact Details</h2>
               {[
-                { icon: Phone, label: 'Phone / WhatsApp', value: '+91 63691 96624', href: 'tel:+916369196624' },
-                { icon: Mail,  label: 'Email',            value: 'sales@kofeetek.in', href: 'mailto:sales@kofeetek.in' },
-                { icon: MapPin,label: 'Head Office',      value: 'Block-C, G3, Kalpatharu Garden, Plot No:10, Priya Nagar, Urapakkam. Chennai – 603210', href: '#' },
-                { icon: Clock, label: 'Service Hours',    value: 'Mon–Sat: 8AM–8PM\nSunday: Emergency only', href: '#' },
+                { icon: Phone, label: 'Phone / WhatsApp', value: '+91 80728 47972', href: 'tel:+918072847972' },
+                { icon: Mail,  label: 'Email',            value: 'info@kofeetek.in', href: 'mailto:info@kofeetek.in' },
+                { icon: MapPin,label: 'Head Office',      value: 'PLOT NO: 10, C-Block, G3, Kalpathru Garden, Priya Nagar, Urapakkam, Chennai, Tamil Nadu - 603210.'},
+                { icon: Clock, label: 'Service Hours',    value: 'Mon–Sat: 10AM–6PM\nSunday: Closed' },
               ].map((c, i) => (
                 <a key={i} href={c.href} className="flex items-start gap-3 mb-5 last:mb-0 group">
                   <div className="w-9 h-9 bg-brand-gold/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold/20">
@@ -79,7 +79,7 @@ export default function Contact() {
               <h3 className="font-semibold mb-3">Quick WhatsApp</h3>
               <p className="text-white/70 text-sm mb-4">Chat with us directly for faster response</p>
               <a
-                href="https://wa.me/916369196624?text=Hi%20KofeeTek%2C%20I%20would%20like%20to%20schedule%20a%20demo."
+                href="https://wa.me/918072847972?text=Hi%20KofeeTek%2C%20I%20would%20like%20to%20schedule%20a%20demo."
                 target="_blank" rel="noopener noreferrer"
                 className="btn-primary w-full justify-center text-sm"
               >
@@ -186,11 +186,8 @@ export default function Contact() {
 
       {/* Google Map embed */}
       <section className="h-80 bg-brand-beige">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.0849955849043!2d80.2005!3d13.0094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA0JzMzLjgiTiA4MMKwMTInMTkuNSJF!5e0!3m2!1sen!2sin!4v1000000000000"
-          width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade" title="KofeeTek Location"
-        />
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.758964106497!2d80.06957129999999!3d12.858838800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52f7dca71158a7%3A0xe6fec9697d5f991a!2sKofeeTek%20Beverage%20Private%20Limited!5e0!3m2!1sen!2sin!4v1782289414077!5m2!1sen!2sin" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade" title="KofeeTek Location"/>
       </section>
     </>
   )

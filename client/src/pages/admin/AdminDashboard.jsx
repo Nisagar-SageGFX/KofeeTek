@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
-import { Users, ClipboardList, Package, TrendingUp, Phone, AlertTriangle } from 'lucide-react'
+import { Users, TrendingUp, Phone, AlertTriangle } from 'lucide-react'
 
 const statusColors = {
   new:            'bg-blue-100 text-blue-700',
@@ -12,9 +12,8 @@ const statusColors = {
 }
 
 export default function AdminDashboard() {
-  const [stats,       setStats]       = useState({ leads:0, newLeads:0, rentals:0, products:0 })
+  const [stats,       setStats]       = useState({ leads:0, newLeads:0 })
   const [recentLeads, setRecentLeads] = useState([])
-  const [lowStock,    setLowStock]    = useState([])
   const [loading,     setLoading]     = useState(true)
   const [error,       setError]       = useState(null)
 
@@ -30,30 +29,15 @@ export default function AdminDashboard() {
           .from('leads').select('*', { count: 'exact', head: true }).eq('status', 'new')
         if (e2) throw new Error(`new leads: ${e2.message}`)
 
-        const { count: rentals, error: e3 } = await supabase
-          .from('rentals').select('*', { count: 'exact', head: true }).eq('rental_status', 'active')
-        if (e3) throw new Error(`rentals: ${e3.message}`)
-
-        const { count: products, error: e4 } = await supabase
-          .from('products').select('*', { count: 'exact', head: true })
-        if (e4) throw new Error(`products: ${e4.message}`)
-
-        const { data: recent, error: e5 } = await supabase
+        const { data: recent, error: e3 } = await supabase
           .from('leads').select('*').order('created_at', { ascending: false }).limit(8)
-        if (e5) throw new Error(`recent leads: ${e5.message}`)
-
-        const { data: inventory, error: e6 } = await supabase
-          .from('inventory').select('*').order('product_name')
-        if (e6) throw new Error(`inventory: ${e6.message}`)
+        if (e3) throw new Error(`recent leads: ${e3.message}`)
 
         setStats({
           leads:    totalLeads || 0,
           newLeads: newLeads   || 0,
-          rentals:  rentals    || 0,
-          products: products   || 0,
         })
         setRecentLeads(recent || [])
-        setLowStock((inventory || []).filter(i => Number(i.stock) <= Number(i.minimum_stock)))
       } catch (err) {
         console.error('Dashboard load error:', err)
         setError(err.message)
@@ -65,10 +49,8 @@ export default function AdminDashboard() {
   }, [])
 
   const statCards = [
-    { label:'Total Leads',    value: stats.leads,    icon: Users,         color:'bg-blue-500',   link:'/admin/leads'    },
-    { label:'New Leads',      value: stats.newLeads, icon: TrendingUp,    color:'bg-brand-gold', link:'/admin/leads'    },
-    { label:'Active Rentals', value: stats.rentals,  icon: ClipboardList, color:'bg-green-500',  link:'/admin/rentals'  },
-    { label:'Products',       value: stats.products, icon: Package,       color:'bg-purple-500', link:'/admin/products' },
+    { label:'Total Leads', value: stats.leads,    icon: Users,      color:'bg-blue-500',   link:'/admin/leads' },
+    { label:'New Leads',   value: stats.newLeads, icon: TrendingUp, color:'bg-brand-gold', link:'/admin/leads' },
   ]
 
   if (loading) return (
@@ -112,24 +94,8 @@ export default function AdminDashboard() {
         <p className="text-brand-brown/55 text-sm mt-1">Welcome back. Here's what's happening today.</p>
       </div>
 
-      {/* Low stock alert */}
-      {lowStock.length > 0 && (
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 flex items-start gap-3">
-          <AlertTriangle size={18} className="text-amber-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="font-semibold text-amber-700 text-sm">Low Stock Alert</p>
-            <p className="text-amber-600 text-xs mt-0.5">
-              {lowStock.map(i => i.product_name).join(', ')} — need restocking
-            </p>
-          </div>
-          <Link to="/admin/inventory" className="ml-auto text-xs text-amber-600 font-semibold hover:underline shrink-0">
-            View →
-          </Link>
-        </div>
-      )}
-
       {/* Stat cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8 max-w-xl">
         {statCards.map((s, i) => (
           <Link key={i} to={s.link}
             className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm

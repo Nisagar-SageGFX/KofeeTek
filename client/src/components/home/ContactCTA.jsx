@@ -33,7 +33,7 @@ export default function ContactCTA() {
                   <Link to="/contact" className="btn-primary gap-2">
                     Schedule Free Demo <ArrowRight size={16} />
                   </Link>
-                  <a href="tel:+919962242499" className="btn-outline gap-2">
+                  <a href="tel:+918072847972" className="btn-outline gap-2">
                     <Phone size={15} /> Call Now
                   </a>
                 </div>
@@ -41,10 +41,10 @@ export default function ContactCTA() {
 
               <div className="space-y-3">
                 {[
-                  { icon: Phone, label:'Call / WhatsApp', value:'+91 99622 42499', href:'tel:+919962242499' },
-                  { icon: Phone, label:'Alternate',       value:'+91 80728 47972', href:'tel:+918072847972' },
-                  { icon: Mail,  label:'Email Us',        value:'sales@kofeetek.in', href:'mailto:sales@kofeetek.in' },
-                  { icon: MapPin,label:'Head Office',     value:'Urapakkam, Chennai – 603210', href:'#' },
+                  { icon: Phone, label:'Call / WhatsApp', value:'+91 80728 47972', href:'tel:+918072847972' },
+                  { icon: Phone, label:'Alternate',       value:'+91 97897 28605', href:'tel:+919789728605' },
+                  { icon: Mail,  label:'Email Us',        value:'info@kofeetek.in', href:'mailto:info@kofeetek.in' },
+                  { icon: MapPin,label:'Head Office',     value:'PLOT NO: 10, C-Block, G3, Kalpathru Garden, Priya Nagar, Urapakkam, Chennai, Tamil Nadu - 603210.', href:'#' },
                 ].map((c, i) => (
                   <a key={i} href={c.href}
                     className="glass-card p-4 flex items-center gap-4 hover:bg-white/20 transition-colors group block">

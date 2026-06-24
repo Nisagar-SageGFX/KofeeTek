@@ -2,18 +2,12 @@ import { useState } from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import {
-  LayoutDashboard, Users, Package, BarChart2, ClipboardList,
-  Boxes, LogOut, Menu, X, Coffee
+  LayoutDashboard, Users, LogOut, Menu, X, Coffee
 } from 'lucide-react'
 
 const navItems = [
   { to: '/admin',            label: 'Dashboard',   icon: LayoutDashboard, end: true },
   { to: '/admin/leads',      label: 'Leads',        icon: Users },
-  { to: '/admin/products',   label: 'Products',     icon: Package },
-  { to: '/admin/inventory',  label: 'Inventory',    icon: Boxes },
-  { to: '/admin/rentals',    label: 'Rentals',      icon: ClipboardList },
-  { to: '/admin/customers',  label: 'Customers',    icon: Users },
-  { to: '/admin/analytics',  label: 'Analytics',    icon: BarChart2 },
 ]
 
 export default function AdminLayout() {

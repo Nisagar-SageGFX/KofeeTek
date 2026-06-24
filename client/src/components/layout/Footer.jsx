@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, Globe } from 'lucide-react'
+import { MapPin, Phone, Mail, Globe, Facebook, Instagram, Linkedin } from 'lucide-react'
 
 const machines  = [
   { label:'Coffee Vending Machines',  to:'/products' },
@@ -16,6 +16,12 @@ const quickLinks = [
   { label:'Contact Us',         to:'/contact'    },
 ]
 // const cities = ['Chennai','Coimbatore','Bangalore','Madurai','Hosur','Salem','Tirupur']
+
+const socialLinks = [
+  { label: 'Facebook',  icon: Facebook,  href: 'https://www.facebook.com/share/1HM7fXvmjN/' },
+  { label: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/kofeetek?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
+  { label: 'LinkedIn',  icon: Linkedin,  href: 'https://www.linkedin.com/company/kofeetek/' },
+]
 
 export default function Footer() {
   return (
@@ -55,11 +61,11 @@ export default function Footer() {
             FSSAI certified. Trusted by 500+ corporates since 2017.
           </p>
           <div className="flex gap-2.5">
-            {['f','in','𝕏','▶'].map((s, i) => (
-              <a key={i} href="#"
+            {socialLinks.map(({ label, icon: Icon, href }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                 className="w-9 h-9 bg-white/6 hover:bg-brand-gold rounded-lg flex items-center
-                           justify-center transition-colors duration-200 hover:text-brand-brownDark text-sm">
-                {s}
+                           justify-center transition-colors duration-200 hover:text-brand-brownDark">
+                <Icon size={16} />
               </a>
             ))}
           </div>
@@ -90,11 +96,11 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
+            {/* <li>
               <Link to="/admin/login" className="text-sm hover:text-brand-gold transition-colors duration-200">
                 Admin Portal
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -106,13 +112,13 @@ export default function Footer() {
               <Phone size={15} className="text-brand-gold mt-0.5 shrink-0" />
               <div>
                 <a href="tel:+919962242499" className="hover:text-brand-gold transition-colors block">+91 99622 42499</a>
-                <a href="tel:+918072847972" className="hover:text-brand-gold transition-colors block text-white/40">+91 80728 47972</a>
+                <a href="tel:+918072847972" className="hover:text-brand-gold transition-colors block">+91 80728 47972</a>
               </div>
             </li>
             <li className="flex gap-3 text-sm">
               <Mail size={15} className="text-brand-gold shrink-0 mt-0.5" />
-              <a href="mailto:sales@kofeetek.in" className="hover:text-brand-gold transition-colors">
-                sales@kofeetek.in
+              <a href="mailto:info@kofeetek.in" className="hover:text-brand-gold transition-colors">
+                info@kofeetek.in
               </a>
             </li>
             <li className="flex gap-3 text-sm">
@@ -124,8 +130,9 @@ export default function Footer() {
             <li className="flex gap-3 text-sm">
               <MapPin size={15} className="text-brand-gold mt-0.5 shrink-0" />
               <span className="text-white/70 leading-relaxed hover:text-brand-gold transition-colors" >
-                Plot No 10, C-Block, G3,<br />
-                Kalpathru Garden, Urapakkam,<br />
+                Plot No 10, C-Block,<br/>
+                 G3, Kalpathru Garden,<br />
+                Priya Nagar, Urapakkam,<br />
                 Chennai – 603210
               </span>
             </li>
