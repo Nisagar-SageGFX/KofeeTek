@@ -216,7 +216,7 @@ export default function Hero() {
             {/* Eyebrow */}
             <motion.p variants={fadeUp}
               className="text-brand-gold/65 text-[11px] font-semibold uppercase tracking-[3.5px] mb-3">
-              South India's #1 B2B Vending Partner
+              South India's Trusted Vending Partner
             </motion.p>
 
             {/* Headline — improved sizing */}
