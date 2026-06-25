@@ -14,15 +14,13 @@ const testimonials = [
 const AUTOPLAY_MS = 5000
 const SWIPE_THRESHOLD = 50
 
-/** Returns 1 (mobile) / 2 (tablet) / 3 (desktop) based on viewport width */
+/** Returns 3 (desktop, carousel) — below lg we render a static 2-col grid instead */
 function useCardsPerView() {
   const [perView, setPerView] = useState(
     typeof window === 'undefined' ? 3 : getPerView(window.innerWidth)
   )
 
   function getPerView(w) {
-    if (w < 640) return 1
-    if (w < 1024) return 2
     return 3
   }
 
@@ -45,28 +43,28 @@ function useCardsPerView() {
 function TestimonialCard({ t }) {
   return (
     <div
-      className="card-premium p-6 sm:p-7 relative h-full flex flex-col
+      className="card-premium p-4 sm:p-6 lg:p-7 relative h-full flex flex-col
                  hover:border-brand-gold/30 transition-colors duration-300"
     >
-      <Quote size={28} className="text-brand-gold/15 absolute top-5 right-5" aria-hidden="true" />
-      <div className="flex mb-3" role="img" aria-label={`${t.rating} out of 5 stars`}>
+      <Quote size={22} className="text-brand-gold/15 absolute top-4 right-4 sm:w-7 sm:h-7" aria-hidden="true" />
+      <div className="flex mb-2 sm:mb-3" role="img" aria-label={`${t.rating} out of 5 stars`}>
         {[...Array(t.rating)].map((_, j) => (
-          <Star key={j} size={13} className="text-brand-gold fill-brand-gold" aria-hidden="true" />
+          <Star key={j} size={12} className="text-brand-gold fill-brand-gold" aria-hidden="true" />
         ))}
       </div>
-      <p className="text-brand-brown/70 text-sm leading-relaxed mb-6 italic grow">"{t.text}"</p>
-      <div className="flex items-center gap-3 mt-auto">
+      <p className="text-brand-brown/70 text-[12px] sm:text-sm leading-relaxed mb-4 sm:mb-6 italic grow">"{t.text}"</p>
+      <div className="flex items-center gap-2 sm:gap-3 mt-auto">
         <div
-          className={`w-10 h-10 ${t.bg} rounded-full flex items-center justify-center
-                      text-white font-bold text-sm shrink-0`}
+          className={`w-8 h-8 sm:w-10 sm:h-10 ${t.bg} rounded-full flex items-center justify-center
+                      text-white font-bold text-xs sm:text-sm shrink-0`}
           aria-hidden="true"
         >
           {t.initial}
         </div>
         <div>
-          <div className="font-semibold text-brand-brownDark text-sm">{t.name}</div>
-          <div className="text-brand-brown/45 text-[11px]">{t.role}</div>
-          <div className="text-brand-brown/35 text-[11px]">{t.company}</div>
+          <div className="font-semibold text-brand-brownDark text-xs sm:text-sm">{t.name}</div>
+          <div className="text-brand-brown/45 text-[10px] sm:text-[11px]">{t.role}</div>
+          <div className="text-brand-brown/35 text-[10px] sm:text-[11px]">{t.company}</div>
         </div>
       </div>
     </div>
@@ -147,6 +145,22 @@ export default function Testimonials() {
           </p>
         </div>
 
+        {/* Mobile & Tablet: static 2-column grid (all 6 testimonials) */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:hidden">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: (i % 2) * 0.06, duration: 0.35 }}
+            >
+              <TestimonialCard t={t} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: carousel */}
         <div
           ref={containerRef}
           role="region"
@@ -158,7 +172,7 @@ export default function Testimonials() {
           onMouseLeave={() => setIsHovering(false)}
           onFocus={() => setIsHovering(true)}
           onBlur={() => setIsHovering(false)}
-          className="relative outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 rounded-2xl"
+          className="relative outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 rounded-2xl hidden lg:block"
         >
           {/* Live region for screen readers */}
           <p ref={liveRegionRef} className="sr-only" role="status" aria-live="polite" />

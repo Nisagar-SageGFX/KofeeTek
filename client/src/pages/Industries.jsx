@@ -97,8 +97,8 @@ export default function Industries() {
           max-width:1200px;margin:0 auto;padding:0 24px;
           position:relative;z-index:1;
         }
-        @media(max-width:1024px){.hind-grid{grid-template-columns:repeat(2,1fr);}}
-        @media(max-width:640px) {.hind-grid{grid-template-columns:1fr;gap:14px;}}
+        @media(max-width:1024px){.hind-grid{grid-template-columns:repeat(2,1fr);gap:14px;padding:0 16px;}}
+        @media(max-width:640px) {.hind-grid{grid-template-columns:repeat(2,1fr);gap:10px;padding:0 16px;}}
 
         /* Card */
         .hind-card {
@@ -110,7 +110,12 @@ export default function Industries() {
                       border-color .4s ease,box-shadow .4s ease;
         }
         .hind-card--vis { opacity:1; transform:translateY(0); }
-        @media(max-width:640px){.hind-card{height:270px;}}
+        @media(max-width:640px){.hind-card{height:220px;border-radius:18px;}}
+        @media(max-width:640px){.hind-count{font-size:20px;top:12px;right:14px;}}
+        @media(max-width:640px){.hind-badge{font-size:8.5px;padding:3px 8px;top:12px;left:12px;}}
+        @media(max-width:640px){.hind-body{padding:14px 12px 12px;}}
+        @media(max-width:640px){.hind-name{font-size:13px;margin-bottom:3px;}}
+        @media(max-width:640px){.hind-desc{font-size:10px;line-height:1.5;}}
 
         .hind-img {
           position:absolute;inset:0;background-size:cover;background-position:center;

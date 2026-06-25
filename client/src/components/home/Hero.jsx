@@ -198,10 +198,10 @@ export default function Hero() {
         style={{ background: 'radial-gradient(ellipse 70% 70% at 75% 50%,rgba(245,184,0,0.065) 0%,transparent 65%)' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        <div className="grid lg:grid-cols-2 gap-10 items-center w-full pt-20 pb-14">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 items-center w-full pt-24 sm:pt-20 pb-14 text-left">
 
           {/* ── LEFT ── */}
-          <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1">
+          <motion.div variants={container} initial="hidden" animate="show" className="order-1 lg:order-1 text-left">
 
             {/* Industry pills */}
             {/* <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-5">
@@ -283,7 +283,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.0, ease: 'easeOut', delay: 0.25 }}
-            className="order-1 lg:order-2 h-[360px] sm:h-[470px] lg:h-[570px] relative"
+            className="order-2 lg:order-2 w-full max-w-[420px] sm:max-w-none mx-auto h-[300px] sm:h-[420px] md:h-[470px] lg:h-[570px] relative"
           >
             <ThreeBoundary>
               <Suspense fallback={<PhotoHero />}>

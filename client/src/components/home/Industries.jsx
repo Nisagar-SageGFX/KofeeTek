@@ -29,20 +29,20 @@ export default function Industries() {
           </p>
         </div>
 
-        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {industries.map((ind, i) => (
-            <div key={i} className="reveal glass-card p-6 hover:bg-brand-gold/10 hover:border-brand-gold/30
+            <div key={i} className="reveal glass-card p-4 sm:p-6 hover:bg-brand-gold/10 hover:border-brand-gold/30
                                     transition-all duration-300 cursor-default group">
-              <div className="flex items-start justify-between mb-4">
-                <div className="w-11 h-11 bg-brand-gold/10 rounded-xl flex items-center justify-center
+              <div className="flex items-start justify-between mb-3 sm:mb-4">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 bg-brand-gold/10 rounded-xl flex items-center justify-center
                                 group-hover:bg-brand-gold/20 transition-colors">
-                  <ind.icon size={22} className="text-brand-gold" />
+                  <ind.icon size={18} className="text-brand-gold sm:w-[22px] sm:h-[22px]" />
                 </div>
-                <span className="font-display text-3xl font-bold text-brand-gold/30 group-hover:text-brand-gold/55
+                <span className="font-display text-xl sm:text-3xl font-bold text-brand-gold/30 group-hover:text-brand-gold/55
                                  transition-colors duration-300">{ind.count}</span>
               </div>
-              <h3 className="text-white font-semibold text-[15px] mb-1.5">{ind.label}</h3>
-              <p className="text-white/40 text-sm">{ind.desc}</p>
+              <h3 className="text-white font-semibold text-[13px] sm:text-[15px] mb-1 sm:mb-1.5 leading-snug">{ind.label}</h3>
+              <p className="text-white/40 text-[12px] sm:text-sm">{ind.desc}</p>
             </div>
           ))}
         </div>

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Layout from './components/layout/Layout'
 import LeadPopup from './components/home/LeadPopup'
-import WhatsAppButton from './components/ui/WhatsAppButton'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import AdminLayout from './components/admin/AdminLayout'
 
@@ -47,16 +46,16 @@ export default function App() {
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index            element={<><Home /><LeadPopup /><WhatsAppButton /></>} />
-            <Route path="about"       element={<><About /><WhatsAppButton /></>} />
-            <Route path="products"    element={<><Products /><WhatsAppButton /></>} />
-            <Route path="consumables" element={<><Consumables /><WhatsAppButton /></>} />
-            <Route path="rental"      element={<><Rental /><WhatsAppButton /></>} />
-            <Route path="industries"  element={<><Industries /><WhatsAppButton /></>} />
-            <Route path="clients"     element={<><Clients /><WhatsAppButton /></>} />
-            <Route path="contact"     element={<><Contact /><WhatsAppButton /></>} />
-            <Route path="blog"        element={<><Blog /><WhatsAppButton /></>} />
-            <Route path="blog/:slug"  element={<><BlogPost /><WhatsAppButton /></>} />
+            <Route index            element={<><Home /><LeadPopup /></>} />
+            <Route path="about"       element={<><About /></>} />
+            <Route path="products"    element={<><Products /></>} />
+            <Route path="consumables" element={<><Consumables /></>} />
+            <Route path="rental"      element={<><Rental /></>} />
+            <Route path="industries"  element={<><Industries /></>} />
+            <Route path="clients"     element={<><Clients /></>} />
+            <Route path="contact"     element={<><Contact /></>} />
+            <Route path="blog"        element={<><Blog /></>} />
+            <Route path="blog/:slug"  element={<><BlogPost /></>} />
           </Route>
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/reset-password" element={<ResetPassword />} />

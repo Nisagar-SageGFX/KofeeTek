@@ -28,35 +28,37 @@ export default function Footer() {
     <footer className="bg-brand-dark text-white/75">
 
       {/* ── CTA Banner ── */}
-      <div className="bg-gradient-to-r from-brand-brown to-brand-brownLight py-14">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">
+      <div className="bg-gradient-to-r from-brand-brown to-brand-brownLight py-10 sm:py-12 md:py-14">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 leading-snug">
             Ready to Transform Your Workplace Beverage Experience?
           </h2>
-          <p className="text-brand-gold/85 text-lg mb-8">
+          <p className="text-brand-gold/85 text-base sm:text-lg mb-6 sm:mb-8">
             Join 500+ companies across South India trusting KofeeTek
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-primary">Schedule Free Demo</Link>
-            <a href="tel:+919962242499" className="btn-outline">Call Us Now</a>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <Link to="/contact" className="btn-primary w-full sm:w-auto justify-center">Schedule Free Demo</Link>
+            <a href="tel:+919962242499" className="btn-outline w-full sm:w-auto justify-center">Call Us Now</a>
           </div>
         </div>
       </div>
 
       {/* ── Main footer ── */}
-      <div className="max-w-7xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-14
+                      grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10
+                      text-center sm:text-left">
 
         {/* Brand */}
-        <div>
+        <div className="flex flex-col items-center sm:items-start">
           <Link to="/" className="inline-block mb-5">
             <img
               src="/assets/logo/kofeetek_logo.svg"
               alt="KofeeTek"
-              className="h-12 object-contain"
+              className="h-10 sm:h-12 object-contain"
               style={{ filter:'none' }}
             />
           </Link>
-          <p className="text-sm leading-relaxed mb-5 text-white/50">
+          <p className="text-sm leading-relaxed mb-5 text-white/50 max-w-xs sm:max-w-none">
             South India's premier B2B vending machine manufacturer. ISO registered.
             FSSAI certified. Trusted by 500+ corporates since 2017.
           </p>
@@ -107,7 +109,7 @@ export default function Footer() {
         {/* Contact */}
         <div>
           <h3 className="text-white font-semibold mb-5 text-[11px] tracking-[3px] uppercase">Contact</h3>
-          <ul className="space-y-4">
+          <ul className="space-y-4 flex flex-col items-center sm:items-start">
             <li className="flex gap-3 text-sm">
               <Phone size={15} className="text-brand-gold mt-0.5 shrink-0" />
               <div>
@@ -117,7 +119,7 @@ export default function Footer() {
             </li>
             <li className="flex gap-3 text-sm">
               <Mail size={15} className="text-brand-gold shrink-0 mt-0.5" />
-              <a href="mailto:info@kofeetek.in" className="hover:text-brand-gold transition-colors">
+              <a href="mailto:info@kofeetek.in" className="hover:text-brand-gold transition-colors break-all">
                 info@kofeetek.in
               </a>
             </li>
@@ -127,7 +129,7 @@ export default function Footer() {
                 www.kofeetek.in
               </a>
             </li>
-            <li className="flex gap-3 text-sm">
+            <li className="flex gap-3 text-sm text-left">
               <MapPin size={15} className="text-brand-gold mt-0.5 shrink-0" />
               <span className="text-white/70 leading-relaxed hover:text-brand-gold transition-colors" >
                 Plot No 10, C-Block,<br/>
@@ -150,10 +152,10 @@ export default function Footer() {
 
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/6 py-5">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3
-                        text-[11px] text-white/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center
+                        justify-between gap-3 text-center text-[11px] text-white/30">
           <span>© {new Date().getFullYear()} KofeeTek Beverage Pvt Ltd. All rights reserved. ISO & FSSAI Registered.</span>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
             <a href="#" className="hover:text-brand-gold transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-brand-gold transition-colors">Terms of Service</a>
             <Link to="/blog" className="hover:text-brand-gold transition-colors">Sitemap</Link>
