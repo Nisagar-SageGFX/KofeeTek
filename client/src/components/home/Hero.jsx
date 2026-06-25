@@ -221,7 +221,7 @@ export default function Hero() {
 
             {/* Headline — improved sizing */}
             <motion.h1 variants={fadeUp}
-              className="font-clash font-medium tracking-tight leading-[0.9] text-white mb-5"
+              className="font-clash font-medium tracking-tight leading-[0.9] text-white mb-5 mt-5"
               style={{ fontSize: 'clamp(40px, 5vw, 64px)' }}>
               Smart Beverage{' '}
               <span className="text-brand-gold relative whitespace-nowrap">

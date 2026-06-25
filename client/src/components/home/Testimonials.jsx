@@ -14,15 +14,12 @@ const testimonials = [
 const AUTOPLAY_MS = 5000
 const SWIPE_THRESHOLD = 50
 
-/** Returns 3 (desktop, carousel) — below lg we render a static 2-col grid instead */
+/** Returns 1 (mobile) / 2 (tablet) / 3 (desktop) cards per carousel slide — same as Clients.jsx */
 function useCardsPerView() {
+  const getPerView = (w) => (w < 640 ? 1 : w < 1024 ? 2 : 3)
   const [perView, setPerView] = useState(
     typeof window === 'undefined' ? 3 : getPerView(window.innerWidth)
   )
-
-  function getPerView(w) {
-    return 3
-  }
 
   useEffect(() => {
     let frame
@@ -145,22 +142,6 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Mobile & Tablet: static 2-column grid (all 6 testimonials) */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:hidden">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 2) * 0.06, duration: 0.35 }}
-            >
-              <TestimonialCard t={t} />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Desktop: carousel */}
         <div
           ref={containerRef}
           role="region"
@@ -172,7 +153,7 @@ export default function Testimonials() {
           onMouseLeave={() => setIsHovering(false)}
           onFocus={() => setIsHovering(true)}
           onBlur={() => setIsHovering(false)}
-          className="relative outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 rounded-2xl hidden lg:block"
+          className="relative outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/40 rounded-2xl"
         >
           {/* Live region for screen readers */}
           <p ref={liveRegionRef} className="sr-only" role="status" aria-live="polite" />
